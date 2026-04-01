@@ -38,7 +38,6 @@ bool GPIO_Driver_ButtonPressed(void);
 
 void GPIO_Driver_SysTickCallback(void);
 
-static uint32_t GetCurrentMs(void);
 
 /*******************************************************************************
  * External vars

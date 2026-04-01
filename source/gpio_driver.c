@@ -55,6 +55,10 @@ uint32_t tiempo_actual;
 /*******************************************************************************
  * Public Source Code
  ******************************************************************************/
+void SysTick_Handler(void){
+	GPIO_Driver_SysTickCallback();
+}
+
 void GPIO_Driver_SysTickCallback(void)
 {
     s_msTicks++;
@@ -80,10 +84,10 @@ static uint32_t GetCurrentMs(void)
 									  PORT_PCR_IRQC(11);		// ISF flag and Interrupt on falling-edge.
 
 	 /* PASO 4 — Configurar GPIO del LED y el botón*/
-	 LED_GREEN_GPIO->PDDR |= (1 << 5);
-	 LED_GREEN_GPIO->PSOR = (1 << 5);
+	 LED_GREEN_GPIO->PDDR |= (1U << LED_GREEN_PIN);
+	 LED_GREEN_GPIO->PSOR = (1U << LED_GREEN_PIN);
 
-	 BTN_SW3_GPIO->PDDR &= (0 << 3);
+	 BTN_SW3_GPIO->PDDR &= ~(1U << BTN_SW3_PIN);
 
 	 /* PASO 5 — Habilitar IRQ en el NVIC*/
 	 NVIC_SetPriority(BTN_SW3_IRQn, BTN_SW3_IRQ_PRIORITY);
@@ -94,7 +98,7 @@ static uint32_t GetCurrentMs(void)
  }
 
  void GPIO_Driver_SetLED(led_state_t state){
-	if(LED_ON){
+	if(state == LED_ON){
 		LED_GREEN_GPIO->PCOR = (1 << 5);
 	}else{
 		LED_GREEN_GPIO->PSOR = (1 << 5);
@@ -102,11 +106,7 @@ static uint32_t GetCurrentMs(void)
  }
 
  void GPIO_Driver_toggleLED(void){
-		LED_GREEN_GPIO->PCOR = (1 << 5);
-		for(int i = 0; i <300000; i++);
-		LED_GREEN_GPIO->PSOR = (1 << 5);
-		for(int j = 0; j <300000; j++);
-
+	 LED_GREEN_GPIO->PTOR = (1U << LED_GREEN_PIN);  // PTOR = toggle register
  }
 
 bool GPIO_Driver_ButtonPressed(void){
@@ -115,14 +115,26 @@ bool GPIO_Driver_ButtonPressed(void){
 	 tiempo_actual = GetCurrentMs();
 	 if(s_buttonFlag == true){
 		 if((tiempo_actual - s_lastPressTime) < BTN_DEBOUNCE_MS){
-			 s_buttonFlag = false;
+			 s_buttonFlag = false;									// CLEAN FLAG
 			 return false;
 		 }
-	 }else{
-		 s_lastPressTime = tiempo_actual;
-		 s_buttonFlag    = false;
-		 return true;
 	 }
+	 s_lastPressTime = tiempo_actual;
+	 s_buttonFlag    = false;
+	 return true;
+}
+
+void PORTC_PORTD_IRQHandler(void)
+{
+	/* PASO A — Leer qué pin disparó la interrupción */
+	 uint32_t flags = PORT_GetPinsInterruptFlags(BTN_SW3_PORT);
+
+	/* PASO B — Verificar que fue nuestro pin */
+	if(flags & (1U << BTN_SW3_PIN)){
+		PORT_ClearPinsInterruptFlags(BTN_SW3_PORT, flags); 	// Limpiar el flag de interrupción (W1C obligatorio) */
+		s_buttonFlag = true;								// Setear el Flag
+	}
+
 }
 
 

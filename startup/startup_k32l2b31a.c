@@ -375,7 +375,7 @@ WEAK_AV void PendSV_Handler(void)
 }
 
 WEAK_AV void SysTick_Handler(void)
-{ while(1) {GPIO_Driver_SysTickCallback();}
+{ while(1) {}
 }
 
 //*****************************************************************************

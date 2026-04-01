@@ -12,7 +12,7 @@ int main(void) {
 	GPIO_Driver_Init();
 
 	while(1){
-		if(GPIO_Driver_ButtonPressed() == true){
+		if(GPIO_Driver_ButtonPressed()){
 			GPIO_Driver_toggleLED();
 		}
 	}

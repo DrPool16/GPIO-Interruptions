@@ -5,7 +5,7 @@
 ../startup/startup_k32l2b31a.c:365:14:HardFault_Handler	0	static
 ../startup/startup_k32l2b31a.c:369:14:SVC_Handler	0	static
 ../startup/startup_k32l2b31a.c:373:14:PendSV_Handler	0	static
-../startup/startup_k32l2b31a.c:377:14:SysTick_Handler	8	static
+../startup/startup_k32l2b31a.c:377:14:SysTick_Handler	0	static
 ../startup/startup_k32l2b31a.c:385:14:IntDefaultHandler	0	static
 ../startup/startup_k32l2b31a.c:395:14:DMA0_IRQHandler	8	static
 ../startup/startup_k32l2b31a.c:399:14:DMA1_IRQHandler	8	static
