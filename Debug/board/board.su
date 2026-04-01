@@ -1,0 +1,5 @@
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\CMSIS/core_cm0plus.h:795:22:__NVIC_DisableIRQ	16	static
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\CMSIS/core_cm0plus.h:848:22:__NVIC_ClearPendingIRQ	16	static
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\drivers/fsl_clock.h:470:20:CLOCK_SetLpuart0Clock	16	static
+../board/board.c:25:6:BOARD_InitDebugConsole	16	static
+../board/board.c:111:6:SystemInitHook	8	static

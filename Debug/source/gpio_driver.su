@@ -1,0 +1,10 @@
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\CMSIS/core_cm0plus.h:757:22:__NVIC_EnableIRQ	16	static
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\CMSIS/core_cm0plus.h:866:22:__NVIC_SetPriority	24	static
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\CMSIS/core_cm0plus.h:1074:26:SysTick_Config	16	static
+C:\Users\elmes\Documents\MCUXpressoIDE_25.6.136\workspace\GPIO_+_Interruptions\drivers/fsl_common_arm.h:672:24:EnableIRQ	24	static
+../source/gpio_driver.c:58:6:GPIO_Driver_SysTickCallback	8	static
+../source/gpio_driver.c:63:17:GetCurrentMs	8	static
+../source/gpio_driver.c:69:7:GPIO_Driver_Init	8	static
+../source/gpio_driver.c:96:7:GPIO_Driver_SetLED	16	static
+../source/gpio_driver.c:104:7:GPIO_Driver_toggleLED	16	static
+../source/gpio_driver.c:112:6:GPIO_Driver_ButtonPressed	8	static
